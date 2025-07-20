@@ -9,7 +9,6 @@ export async function POST (req) {
     try {
         const { name, email, password } = await req.json();
         
-        // Validación básica
         if (!name || !email || !password) {
             console.log("Missing required fields");
             return NextResponse.json({
@@ -34,7 +33,6 @@ export async function POST (req) {
     } catch (error) {
         console.error("Registration error:", error);
         
-        // Manejar errores específicos de MongoDB
         if (error.code === 11000) {
             return NextResponse.json({
                 error: "User with this email or name already exists"

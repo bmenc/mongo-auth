@@ -1,6 +1,7 @@
 'use client';
 import Link from "next/link";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function RegisterForm() {
     const [name, setName] = useState("");
@@ -8,6 +9,8 @@ export default function RegisterForm() {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
+
+    const router = useRouter();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -37,6 +40,7 @@ export default function RegisterForm() {
                 setName("");
                 setEmail("");
                 setPassword("");
+                router.push("/");
             } else {
                 setError(data.error || "Registration failed. Please try again. [component]");
             }
